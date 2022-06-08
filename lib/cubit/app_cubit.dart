@@ -7,6 +7,7 @@ import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/accueilScreen.dart';
+import 'package:m_wallet_hps/screens/FirstRoute.dart';
 import 'package:m_wallet_hps/screens/settings_page.dart';
 import 'package:m_wallet_hps/screens/transfer_page.dart';
 import 'package:m_wallet_hps/screens/user_page.dart';
@@ -21,7 +22,7 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     AcccueilScreen(),
-    const SettingsPage(),
+      FirstRoute(),
     const UserPage(),
   ];
   static List<String> banks = <String>['cih', 'attijari', 'sgma'];
@@ -38,7 +39,7 @@ class AppCubit extends Cubit<AppStates> {
 
   UserModel? userModel;
   void userLogin(
-      {required String email,
+      {required String username,
       required String password,
       required String swift}) {
     print(swift);
@@ -46,7 +47,7 @@ class AppCubit extends Cubit<AppStates> {
     DioHelper.postDataLogins(
       url: "login?swift=$swift",
       data: {
-        'email': email,
+        'username': username,
         'password': password,
       },
     ).then((value) {
@@ -64,6 +65,7 @@ class AppCubit extends Cubit<AppStates> {
   void userSignUp(
       {required String swift,
       required String email,
+      required String username,
       required String password,
       required String firstName,
       required String lastName}) {
@@ -75,7 +77,8 @@ class AppCubit extends Cubit<AppStates> {
         'email': email,
         'password': password,
         'firstName': firstName,
-        'lastName': lastName
+        'lastName': lastName,
+        'username' : username
       },
     ).then((value) {
       emit(AppSigninSuccessStates(swift));

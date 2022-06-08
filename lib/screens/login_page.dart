@@ -21,7 +21,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  var emailLoginController = TextEditingController();
+  var usernameLoginController = TextEditingController();
   var passwordLogController = TextEditingController();
 
   @override
@@ -85,31 +85,27 @@ class _LoginPageState extends State<LoginPage> {
                 child: Form(
                   key: _formKey,
                   child: Column(
+                    
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(
-                                15.0, 195.0, 0.0, 0.0),
-                            child: const Text(
-                              'Payit',
-                              style: TextStyle(
-                                  fontSize: 70.0, fontWeight: FontWeight.bold),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Row(
+                          children:  [
+                            Container(
+                              height: 90,
+                              width: 90,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/Payit.png')
+                                  )
+                              ),
                             ),
-                          ),
-                          Container(
-                            padding:
-                                const EdgeInsets.fromLTRB(180, 195.0, 0, 0.0),
-                            child: const Text(
-                              '.',
-                              style: TextStyle(
-                                  fontSize: 80.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green),
-                            ),
-                          )
-                        ],
+                            Text("ayit",style:TextStyle(fontSize: 70,fontWeight: FontWeight.bold)),
+                            Text(".",style: TextStyle(fontSize: 70,fontWeight: FontWeight.bold,color: Color(0xff86B61B)), )
+                          ],
+                        ),
                       ),
                       Container(
                           padding: const EdgeInsets.only(
@@ -119,13 +115,13 @@ class _LoginPageState extends State<LoginPage> {
                               TextFormField(
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return "the Email must not be empty";
+                                    return "the Username must not be empty";
                                   }
                                   return null;
                                 },
-                                controller: emailLoginController,
+                                controller: usernameLoginController,
                                 decoration: const InputDecoration(
-                                    labelText: 'EMAIL',
+                                    labelText: 'USERNAME',
                                     labelStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.bold,
@@ -188,13 +184,13 @@ class _LoginPageState extends State<LoginPage> {
                                     buttonText: "Login",
                                     function: () {
                                       if (_formKey.currentState!.validate()) {
-                                        print(emailLoginController.text);
+                                        print(usernameLoginController.text);
                                         print(passwordLogController.text);
                                         AppCubit.get(context).userLogin(
                                             swift: AppCubit.get(context)
                                                 .element
                                                 .toLowerCase(),
-                                            email: emailLoginController.text,
+                                            username: usernameLoginController.text,
                                             password:
                                                 passwordLogController.text);
                                       }

@@ -36,6 +36,7 @@ class _SignupPageState extends State<SignupPage> {
   var passwordController = TextEditingController();
 
   var emailController = TextEditingController();
+  var usernameController = TextEditingController();
 
   var firstnameController = TextEditingController();
 
@@ -48,6 +49,7 @@ class _SignupPageState extends State<SignupPage> {
        //await Future.delayed(const Duration(milliseconds: 300), () => 422);
 
         AppCubit.get(context).userSignUp(
+            username:usernameController.text ,
             swift: swiftController.value!,
             email: emailController.text,
             password: passwordController.text,
