@@ -7,8 +7,10 @@ import 'package:m_wallet_hps/models/userModel.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/accueilScreen.dart';
-import 'package:m_wallet_hps/screens/FirstRoute.dart';
+
+import 'package:m_wallet_hps/screens/profile_page.dart';
 import 'package:m_wallet_hps/screens/settings_page.dart';
+import 'package:m_wallet_hps/screens/transferPage.dart';
 import 'package:m_wallet_hps/screens/transfer_page.dart';
 import 'package:m_wallet_hps/screens/user_page.dart';
 
@@ -22,8 +24,8 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     AcccueilScreen(),
-      FirstRoute(),
-    const UserPage(),
+     FirstRoute(),
+     ProfilePage(),
   ];
   static List<String> banks = <String>['cih', 'attijari', 'sgma'];
   String element = banks.first;
@@ -119,7 +121,28 @@ class AppCubit extends Cubit<AppStates> {
       });
     }
   }
+  void Makevirement(montant,destinataire,message,emetteur){
+
+    print(emetteur);
+    String operation_type = "virement";
+    emit(AppVirementInitialStates());
+    DioHelper.postData(url: "transfer/operation", data: {
+      "operation_type" : operation_type,
+      "montant" : montant,
+      "emetteur" : emetteur,
+      "destinataire" : destinataire,
+      "message" : message
+    }).then((value) {
+      loadLoggedInUser(CacheHelper.getData(key: 'email'),CacheHelper.getData(key: 'swift'));
+      emit(AppVirementSuccessStates());
+      print(value.data);
+    }).catchError((error){
+      emit(AppVirementErrorStates());
+      print(error.toString());
+    });
+  }
 }
+
 
 
 bool jwtVerification(String token) {
@@ -127,8 +150,12 @@ bool jwtVerification(String token) {
   print(expiryDate);
   DateTime now = DateTime.now();
   if (expiryDate!.compareTo(now) < 0) {
-    return false;
+    return true;
   } else {
     return true;
   }
+
+
+
+
 }

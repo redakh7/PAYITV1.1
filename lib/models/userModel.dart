@@ -41,6 +41,8 @@ class Data {
     required this.credentialsNonExpired,
     required this.username,
     required this.authorities,
+    required this.rib,
+    required this.solde,
   });
   late final String email;
   late final String firstName;
@@ -53,6 +55,9 @@ class Data {
   late final bool accountNonLocked;
   late final bool credentialsNonExpired;
   late final String username;
+  late final String rib;
+  late final double solde;
+
   late final List<Authorities> authorities;
 
   Data.fromJson(Map<String, dynamic> json){
@@ -67,6 +72,8 @@ class Data {
     accountNonLocked = json['accountNonLocked'];
     credentialsNonExpired = json['credentialsNonExpired'];
     username = json['username'];
+    rib = json['rib'];
+    solde = json['solde'];
     authorities = List.from(json['authorities']).map((e)=>Authorities.fromJson(e)).toList();
   }
 

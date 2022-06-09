@@ -55,7 +55,9 @@ dependencies:
   flutter_native_splash: ^2.1.6
   flutter_launcher_icons: ^0.9.2
   numeric_keyboard: ^1.1.0
+  flutter_vector_icons: ^1.0.0
   sidebarx: ^0.4.0
+  intl: ^0.17.0
 flutter_icons:
   android: true
   ios: true
@@ -101,9 +103,9 @@ flutter:
     - images/logout.png
     - images/logo.png
     - images/body_background.png
-    - user.png
     - scaner.png
     - Payit.png
+    - profile.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

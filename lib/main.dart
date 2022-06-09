@@ -36,6 +36,7 @@ Future<void> main() async {
   if (token == null) {
     widget = const LoginPage();
   } else if (jwtVerification(token) == true) {
+
     print(jwtVerification(token));
     widget = const HomePage();
   } else {

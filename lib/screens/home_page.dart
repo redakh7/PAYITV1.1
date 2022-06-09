@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
+import 'package:m_wallet_hps/network/local/cache_helper.dart';
 import 'package:m_wallet_hps/screens/settings_page.dart';
 import 'package:m_wallet_hps/shared/buttons.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -17,7 +18,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      listener: ((context, state) {}),
+      listener: ((context, state) {
+
+      }),
       builder: ((context, state){
         return Conditional.single(context: context,
         conditionBuilder: (context)=>AppCubit.get(context).userModel!=null,

@@ -51,3 +51,7 @@ class RemoveTokenErrorStates extends AppStates {}
 class LoadLoggedInUserSuccess extends AppStates {}
 class LoadLoggedInUserError extends AppStates {}
 
+class AppVirementInitialStates extends AppStates {}
+class AppVirementLoadingStates extends AppStates {}
+class AppVirementSuccessStates extends AppStates {}
+class AppVirementErrorStates extends AppStates {}
