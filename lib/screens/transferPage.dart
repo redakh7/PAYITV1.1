@@ -1,23 +1,63 @@
 import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/shared/component.dart';
-
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import '../cubit/app_cubit.dart';
 
 
-class FirstRoute extends StatelessWidget {
+class FirstRoute extends StatefulWidget {
    FirstRoute({key});
+
+  @override
+  State<FirstRoute> createState() => _FirstRouteState();
+}
+
+class _FirstRouteState extends State<FirstRoute> {
    var montantController = TextEditingController();
+
    var destinataireController = TextEditingController();
+
    var messageController = TextEditingController();
+   String scanBarcode = '';
+
+   @override
+   void initState() {
+     super.initState();
+   }
+
+  Future<void> scanQR() async {
+
+     String barcodeScanRes;
+     // Platform messages may fail, so we use a try/catch PlatformException.
+     try {
+       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+           '#ff6666', 'Cancel', true, ScanMode.QR);
+       print(barcodeScanRes);
+     } on PlatformException {
+       barcodeScanRes = 'Failed to get platform version.';
+     }
+
+     // If the widget was removed from the tree while the asynchronous platform
+     // message was in flight, we want to discard the reply rather than calling
+     // setState to update our non-existent appearance.
+     if (!mounted) return;
+
+     setState(() {
+       scanBarcode = barcodeScanRes;
+      destinataireController.text = barcodeScanRes;
+     });
+   }
+
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<AppCubit,AppStates>( listener: (context,state){
       if(state is LoadLoggedInUserSuccess){
         navigateAndFinish(context,HomePage());
@@ -188,11 +228,11 @@ class FirstRoute extends StatelessWidget {
                       ),
                       TextFormField(
                         controller: destinataireController,
-                        style:const  TextStyle(
+                        style:  TextStyle(
                           fontSize: 18,
 
                         ),
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           focusColor: Colors.white,
                           //add prefix icon
                           fillColor: Colors.grey,
@@ -205,6 +245,15 @@ class FirstRoute extends StatelessWidget {
 
                           //create lable
                           labelText: 'Compte Destinataire',
+                          suffixIcon: IconButton(onPressed: (){
+                            print("hi");
+
+                            scanQR();
+
+
+                            print("hihiiiiiiiiiii");
+                            print(destinataireController.text);
+                          }, icon: Icon(Icons.qr_code_scanner,color: Colors.green,)),
                           //lable style
                           labelStyle: TextStyle(
                             color: Colors.grey,
@@ -233,8 +282,14 @@ class FirstRoute extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
+class SecondRoute extends StatefulWidget {
   const SecondRoute({key});
+
+  @override
+  State<SecondRoute> createState() => _SecondRouteState();
+}
+
+class _SecondRouteState extends State<SecondRoute> {
 
   @override
   Widget build(BuildContext context) {
@@ -245,13 +300,13 @@ class SecondRoute extends StatelessWidget {
             padding: const EdgeInsets.all(18.0),
             child: Column(
               children: [
-                SizedBox(
+              const  SizedBox(
                   height: 200,
                 ),
                 TextFormField(
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
                   textAlign: TextAlign.center,
-                  decoration: new InputDecoration(
+                  decoration:  const InputDecoration(
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
@@ -282,7 +337,7 @@ class SecondRoute extends StatelessWidget {
                         width: 155,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () { },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.green, // Background color
                           onPrimary:

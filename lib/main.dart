@@ -11,15 +11,11 @@ import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/cubit/bloc_observer.dart';
 import 'package:m_wallet_hps/network/remote/dio_helper.dart';
 import 'package:m_wallet_hps/screens/AcccueilScreen.dart';
-import 'package:m_wallet_hps/screens/accueilScreen.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:m_wallet_hps/screens/home_page.dart';
 import 'package:m_wallet_hps/screens/login_page.dart';
 import 'package:m_wallet_hps/screens/signup_page.dart';
-import 'package:m_wallet_hps/screens/transfer_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'network/local/cache_helper.dart';
 
 Future<void> main() async {
@@ -94,7 +90,7 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     TyperAnimatedTextKit(
-                      text: const ["Discover The Future \n With US"],
+                      text: const ["Discover The Future \n With US..."],
                       textStyle: GoogleFonts.fredokaOne(
                         textStyle:
                             TextStyle(fontSize: 25, color: Color(0xff4c6611)),
@@ -112,7 +108,7 @@ class MyApp extends StatelessWidget {
               SignupPage.id: (context) => SignupPage(),
               LoginPage.id: (context) => const LoginPage(),
               // HomePage.id: (context) => const HomePage(),
-              TransferPage.id: (context) => const TransferPage(),
+
               AcccueilScreen.id: (context) => AcccueilScreen(),
             },
           ),
