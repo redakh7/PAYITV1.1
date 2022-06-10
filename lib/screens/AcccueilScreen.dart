@@ -194,6 +194,7 @@ class AcccueilScreen extends StatelessWidget {
       children: [
         Expanded(
           child: InkWell(
+            borderRadius: BorderRadius.circular(20),
             onTap: () {},
             child: Container(
               margin: EdgeInsets.all(4),
@@ -206,9 +207,7 @@ class AcccueilScreen extends StatelessWidget {
                   margin: EdgeInsets.all(25),
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                    image: AssetImage(
-                      'images/profile.png',
-                    ),
+                          image: AssetImage('asset/images/$img.png')
                   )),
                 ),
               ),
@@ -246,9 +245,10 @@ class AcccueilScreen extends StatelessWidget {
             width: 60,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+          color: Colors.white,
                 image: DecorationImage(
-                    image: AssetImage('images/user.png'), fit: BoxFit.contain),
+
+                    image: AssetImage('images/user.png'), fit: BoxFit.cover),
                 border: Border.all(color: Colors.black, width: 2)),
           ),
           Text(

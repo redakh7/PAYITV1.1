@@ -157,8 +157,25 @@ class FirstRoute extends StatelessWidget {
                       ),
                       TextDropdownFormField(
                         options: [
-                          "MONSIEUR REDA KHOUDRI\n 234587643584559847",
-                          "MONSIEUR REDA KHOUDRI\n YZTRYSGFHGH",
+                          "MONSIEUR ${
+                                AppCubit.get(context)
+                                    .userModel
+                                    ?.data
+                                    .firstName
+                                    .toUpperCase()
+                              }  ${
+                                AppCubit.get(context)
+                                    .userModel
+                                    ?.data
+                                    .lastName
+                                    .toUpperCase()
+                              }  \n ${
+                              AppCubit.get(context)
+                                  .userModel
+                                  ?.data
+                                  .rib
+
+                          }"
                         ],
                         decoration:const InputDecoration(
                             border: OutlineInputBorder(),

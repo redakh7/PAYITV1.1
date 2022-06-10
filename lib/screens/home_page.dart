@@ -37,19 +37,14 @@ class HomePage extends StatelessWidget {
 
 
 
-  Widget builderWidget(context)=>Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage('images/body_background.png'),
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: Scaffold(
-    backgroundColor: Colors.transparent,
+  Widget builderWidget(context)=>Scaffold(
+  backgroundColor: Colors.white,
 
-      body: AppCubit.get(context)
-          .bottomScreens[AppCubit.get(context).currentIndex],
-      bottomNavigationBar: SalomonBottomBar(
+    body: AppCubit.get(context)
+        .bottomScreens[AppCubit.get(context).currentIndex],
+    bottomNavigationBar: Padding(
+      padding: const EdgeInsets.only(left: 20,right: 20),
+      child: SalomonBottomBar(
         currentIndex: AppCubit.get(context).currentIndex,
         onTap: (index) {
           AppCubit.get(context).changeBottom(index);
@@ -63,16 +58,16 @@ class HomePage extends StatelessWidget {
 
           /// Search
           SalomonBottomBarItem(
-            icon: Icon(Icons.search),
+            icon: ImageIcon(AssetImage("asset/images/sendMoney.png")),
             title: Text("Search"),
-            selectedColor: Colors.orange,
+            selectedColor: Colors.green,
           ),
 
           /// Profile
           SalomonBottomBarItem(
             icon: Icon(Icons.person),
             title: Text("Profile"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.green,
           ),
         ],
       ),

@@ -18,46 +18,59 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) => SafeArea(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16, vertical: 73),
-              child: Column(
-                children: [
-                  const Text(
-                    'My Profile',
+            child: Column(
+              children: [
+                Container(
+                  
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(180)),
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff4889aa),
+              Color(0xff4889aa),
+              Color(0xff4c91bc),
+              Color(0xff4c91bc),
 
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: Color(0xff4c6611),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                      fontFamily: 'Nisebuschgardens',
+            ],
+                  )),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                     
+                        const SizedBox(
+                          height: 22,
+                        ),
+                        Center(
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("images/profile.png"),
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 22,
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  Column(
+                ),
+
+                SizedBox(height: 100,),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
                     children: [
-                      Center(
-                        child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("images/profile.png"),
-                              )),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                      ),
+
+
                       Container(
 
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color:Color(0xff4c6611) ),
+                          border: Border.all(color: Color(0xff4c91bc),width: 2 ),
                           color: Colors.white,
 
                         ),
@@ -100,9 +113,9 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         ));
@@ -121,7 +134,7 @@ Widget RowBuilder({
           Text(
             att,
             style: const TextStyle(
-                color: Color(0xff4c6611),
+                color:  Color(0xff4c91bc),
                 fontFamily: 'Nunito',
                 fontSize: 15,
                 fontWeight: FontWeight.bold),
@@ -133,6 +146,7 @@ Widget RowBuilder({
               color: Color(0xff4c6611),
               fontFamily: 'Nunito',
               fontSize: 15,
+              fontWeight: FontWeight.bold
             ),
           ),
         ],
