@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:m_wallet_hps/cubit/app_cubit.dart';
 import 'package:m_wallet_hps/cubit/app_states.dart';
 import 'package:m_wallet_hps/network/local/cache_helper.dart';
+import 'package:m_wallet_hps/screens/ConfirmationScreen.dart';
 import 'package:m_wallet_hps/screens/login_page.dart';
 import 'package:m_wallet_hps/shared/buttons.dart';
 import 'package:m_wallet_hps/shared/component.dart';
@@ -66,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
-          navigateAndFinish(context, const LoginPage());
+          navigateAndFinish(context, const ConfitmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }
@@ -258,7 +259,7 @@ class _SignupPage2State extends State<SignupPage2> {
         if (state is AppSigninSuccessStates) {
           showToast(message: "registrated");
           CacheHelper.saveData(key: 'swift', value: state.swift);
-          navigateAndFinish(context, const LoginPage());
+          navigateAndFinish(context, const ConfitmationScreen());
         } else if (state is AppLoginErrorStates) {
           showToast(message: state.error);
         }
@@ -387,7 +388,6 @@ class _SignupPage2State extends State<SignupPage2> {
                       password:  AppCubit.get(context).password!,
                       firstName: firstnameController.text ,
                       lastName: lastnameController.text);
-
                 }
 
                       },
