@@ -14,6 +14,11 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
+  String? email;
+  String? username;
+  String? password;
+
+
   int currentIndex = 0;
   List<Widget> bottomScreens = [
     AcccueilScreen(),
@@ -37,6 +42,9 @@ class AppCubit extends Cubit<AppStates> {
       {required String username,
       required String password,
       required String swift}) {
+print(username);
+print(swift);
+print(password);
 
     emit(AppLoginInitialStates());
     DioHelper.postDataLogins(
@@ -46,12 +54,12 @@ class AppCubit extends Cubit<AppStates> {
         'password': password,
       },
     ).then((value) {
-
+        print(value.data);
       userModel = UserModel.fromJson(value.data);
       emit(AppLoginSuccessStates(userModel!));
       emit(LoginSaveTokenInitialStates());
     }).catchError((error) {
-
+      print(error.toString());
       emit(AppLoginErrorStates("Login Failed"));
     });
   }
